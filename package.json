@@ -1,0 +1,19 @@
+{
+    "name": "educare-backend",
+    "version": "1.0.0",
+    "description": "REST API application for our LMS project educare",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Aayush wadhwani",
+    "license": "ISC",
+    "devDependencies": {
+        "@types/express": "^4.17.13",
+        "prettier": "^2.6.0",
+        "typescript": "^4.6.2"
+    },
+    "dependencies": {
+        "express": "^4.17.3"
+    }
+}
