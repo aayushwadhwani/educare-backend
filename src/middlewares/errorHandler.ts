@@ -3,10 +3,12 @@ import CustomError from "../utils/CustomError";
 
 const errorHandlerMiddleware = (err: CustomError, req: Request, res: Response, next: NextFunction) => {
     err.status = err.status || { code: 500, message: "error" };
-    err.reason = {
+    console.log(err);
+    res.status(err.status.code).json({
+        status: err.status,
         message: err.message,
-    };
-    res.status(err.status.code).json(err);
+        stack: err.stack,
+    });
 };
 
 export default errorHandlerMiddleware;
