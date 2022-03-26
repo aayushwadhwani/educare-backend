@@ -17,7 +17,10 @@ declare global {
                     last: string;
                 };
                 email: string;
-                role: mongoose.Types.ObjectId;
+                role: {
+                    _id: string;
+                    name: string;
+                };
                 gender: string;
             };
         }

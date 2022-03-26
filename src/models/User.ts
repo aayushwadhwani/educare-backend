@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import Role from "./Role";
 
 const userSchema = new mongoose.Schema(
     {
@@ -61,7 +62,7 @@ const userSchema = new mongoose.Schema(
         },
         role: {
             type: mongoose.Types.ObjectId,
-            ref: "Role",
+            ref: Role,
             required: [true, "Please provide the role"],
         },
         createdBy: {
