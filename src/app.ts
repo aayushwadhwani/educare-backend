@@ -4,7 +4,25 @@ import routes from "./routes";
 import dotenv from "dotenv";
 import notFound from "./errors/notFound";
 import errorHandlerMiddleware from "./middlewares/errorHandler";
+import mongoose from "mongoose";
 dotenv.config({ path: ".env.dev" });
+
+declare global {
+    // eslint-disable-next-line @typescript-eslint/no-namespace
+    namespace Express {
+        interface Request {
+            user: {
+                name: {
+                    first: string;
+                    last: string;
+                };
+                email: string;
+                role: mongoose.Types.ObjectId;
+                gender: string;
+            };
+        }
+    }
+}
 
 const port = process.env.PORT || 3000;
 const app = express();

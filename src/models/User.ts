@@ -99,4 +99,12 @@ userSchema.methods.generateJWT = function () {
     });
 };
 
+userSchema.methods.changedPasswordAfter = function (jwtTimestamp: number) {
+    if (this.passwordChangedAt) {
+        const changesTimeStamp = parseInt(this.passwordChangedAt.getTime(), 10) / 1000;
+        return jwtTimestamp < changesTimeStamp;
+    }
+    return false;
+};
+
 export default mongoose.model("User", userSchema);
