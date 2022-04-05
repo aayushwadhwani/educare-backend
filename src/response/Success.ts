@@ -7,7 +7,7 @@ class SuccessResponse extends ApiResponse {
 }
 
 const successResponse = (data: { [x: string]: any }, statusCode: number = 200, error: { [x: string]: any } = {}) => {
-    const sendSuccessResponse = new SuccessResponse(data, (statusCode = 200), (error = {}));
+    const sendSuccessResponse = new SuccessResponse(data, (statusCode = 200), error);
     return sendSuccessResponse;
 };
 
