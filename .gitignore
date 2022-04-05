@@ -2,3 +2,5 @@
 /src/datasheets
 /dist
 /.env.*
+/logs
+/uploads
