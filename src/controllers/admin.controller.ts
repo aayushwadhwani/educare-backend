@@ -9,9 +9,13 @@ import multer from "multer";
 import Role from "../models/Role";
 import createError from "../response/fail";
 
-const dsckStorageOption = diskStorageOprions("teachers", "temp");
-const storage = multer.diskStorage(dsckStorageOption);
-export const uploadTeacherDataCsv = multerForCsv(storage);
+const teacherDiskStorageOption = diskStorageOprions("teachers", "temp");
+const teacherStorage = multer.diskStorage(teacherDiskStorageOption);
+export const uploadTeacherDataCsv = multerForCsv(teacherStorage);
+
+const studentDiskStorageOption = diskStorageOprions("student", "student");
+const studentStorage = multer.diskStorage(studentDiskStorageOption);
+export const uploadStudentDataCsv = multerForCsv(studentStorage);
 
 const addAdmin = asyncWrapper(async (req, res) => {
     const toAdd = {
@@ -81,4 +85,62 @@ const addTeachers = asyncWrapper(async (req, res, next) => {
     res.status(200).json(response);
 });
 
-export { addAdmin, addTeachers };
+const addStudents = asyncWrapper(async (req, res, next) => {
+    const uploadPath = __dirname + "../../../uploads/student/" + req.file?.filename;
+    const studentId = await Role.findOne({ name: "student", isActive: true }, "name");
+    if (!studentId) {
+        return next(createError("There was an error", 500));
+    }
+
+    const studentDataPromise: Promise<
+        {
+            firstName: string;
+            lastName: string;
+            email: string;
+            dateOfBirth: string;
+            gender: string;
+        }[]
+    > = new Promise((resolve, reject) => {
+        const data: any[] = [];
+        try {
+            fs.createReadStream(uploadPath)
+                .pipe(csv.parse({ headers: true }))
+                .on("error", reject)
+                .on("data", (d) => data.push(d))
+                .on("end", (hahaa: number) => resolve(data));
+        } catch (error) {
+            next(error);
+        }
+    });
+
+    const success: { email: string; password: string }[] = [];
+    const error: string[] = [];
+    const studentData = await studentDataPromise;
+    for (let i = 0; i < studentData.length; i++) {
+        const current = studentData[i];
+        const data = {
+            name: { first: current.firstName, last: current.lastName },
+            email: current.email,
+            gender: current.gender,
+            dateOfBirth: current.dateOfBirth,
+            role: studentId._id,
+            password: current.firstName + "." + current.lastName,
+            createdBy: req.user._id,
+            updatedBy: req.user._id,
+        };
+
+        try {
+            const student = await User.create(data);
+            success.push({ email: student.email, password: current.firstName + "." + current.lastName });
+        } catch (e) {
+            console.log(e);
+            error.push(current.email);
+        }
+    }
+
+    console.log(studentData);
+    const response = successResponse(success, 201, error);
+    res.status(response.status.code).json(response);
+});
+
+export { addAdmin, addTeachers, addStudents };
