@@ -43,6 +43,11 @@ class apiFeatures {
         switch (master) {
             case "role":
                 this.query.select("name updatedBy updatedAt");
+                break;
+
+            case "class":
+                this.query.select("name students teacher updatedAt updatedBy");
+                break;
         }
         return this;
     }

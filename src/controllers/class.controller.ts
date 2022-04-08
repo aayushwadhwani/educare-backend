@@ -11,6 +11,7 @@ import createError from "../response/fail";
 import User from "../models/User";
 import Class from "../models/Class";
 import successResponse from "../response/Success";
+import apiFeatures from "../utils/ApiFeatures";
 
 const createClass = asyncWrapper(async (req, res, next) => {
     const uploadedPath = __dirname + "../../../uploads/class/" + req.file?.filename;
@@ -65,4 +66,39 @@ const createClass = asyncWrapper(async (req, res, next) => {
     res.status(response.status.code).json(response);
 });
 
-export { createClass };
+const getAllClass = asyncWrapper(async (req, res, next) => {
+    const teacher = req.user._id;
+    const { query, pageNumber, hitsLimit } = new apiFeatures(Class.find({ teacher, isActive: true }), req.query)
+        .populateUpdatedBy()
+        .search(["name"])
+        .limitFields("class")
+        .populate("students", "name email gender")
+        .paginate();
+
+    const classes = await query.query;
+    const data = { hitsLimit, pageNumber, classes };
+    const response = successResponse(data);
+
+    res.status(response.status.code).json(response);
+});
+
+const deleteClass = asyncWrapper(async (req, res, next) => {
+    const { id } = req.params;
+    const updatedBy = req.user._id;
+
+    const classExist = await Class.findOne({ _id: id, isActive: true }, "name");
+    if (!classExist) {
+        return next(createError(`No class found with id: ${id}`, 400));
+    }
+    const deleteClass = await Class.findOneAndUpdate(
+        { _id: id, isActive: true },
+        { isActive: false, updatedBy },
+        { new: true, runValidators: true }
+    );
+
+    const data = { deleted: !deleteClass.isActive, id };
+    const response = successResponse(data);
+
+    res.status(response.status.code).json(response);
+});
+export { createClass, getAllClass, deleteClass };
