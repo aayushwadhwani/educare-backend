@@ -48,6 +48,10 @@ class apiFeatures {
             case "class":
                 this.query.select("name students teacher updatedAt updatedBy");
                 break;
+
+            case "subject":
+                this.query.select("name class teacher updatedBy updatedAt");
+                break;
         }
         return this;
     }
