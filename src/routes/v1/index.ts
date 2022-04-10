@@ -6,6 +6,7 @@ import teacherRoute from "./teacher.route";
 import studentRoute from "./student.route";
 import subjectRoute from "./subject.route";
 import scheduleRoute from "./schedule.route";
+import assignmentRoute from "./assignment.route";
 
 const router = express.Router();
 
@@ -16,6 +17,7 @@ router.use("/teacher", teacherRoute);
 router.use("/student", studentRoute);
 router.use("/subject", subjectRoute);
 router.use("/schedule", scheduleRoute);
+router.use("/assignment", assignmentRoute);
 router.get("/", (req, res) => {
     res.status(200).json({ message: "educare API is running" });
 });
