@@ -52,6 +52,10 @@ class apiFeatures {
             case "subject":
                 this.query.select("name class teacher updatedBy updatedAt");
                 break;
+
+            case "teachers":
+                this.query.select("name email dateOfBirth gender updatedBy updatedAt");
+                break;
         }
         return this;
     }

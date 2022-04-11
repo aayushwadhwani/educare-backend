@@ -8,6 +8,7 @@ import path from "path";
 import multer from "multer";
 import Role from "../models/Role";
 import createError from "../response/fail";
+import apiFeatures from "../utils/ApiFeatures";
 
 const teacherDiskStorageOption = diskStorageOprions("teachers", "temp");
 const teacherStorage = multer.diskStorage(teacherDiskStorageOption);
@@ -143,4 +144,54 @@ const addStudents = asyncWrapper(async (req, res, next) => {
     res.status(response.status.code).json(response);
 });
 
-export { addAdmin, addTeachers, addStudents };
+const getTeachers = asyncWrapper(async (req, res, next) => {
+    const teacherId = await Role.findOne({ name: "teacher" });
+    if (!teacherId) {
+        return next(createError("There was an error", 400));
+    }
+
+    const { query, hitsLimit, pageNumber } = new apiFeatures(
+        User.find({
+            role: teacherId,
+            isActive: true,
+        }),
+        req.query
+    )
+        .limitFields("teachers")
+        .populateUpdatedBy()
+        .sort()
+        .search(["name.first"])
+        .paginate();
+
+    const teachers = await query.query;
+    const data = { hitsLimit, pageNumber, count: teachers.length, teachers };
+    const response = successResponse(data);
+    res.status(200).json(response);
+});
+
+const getStudents = asyncWrapper(async (req, res, next) => {
+    const studentId = await Role.findOne({ name: "student" });
+    if (!studentId) {
+        return next(createError("There was an error", 400));
+    }
+
+    const { query, hitsLimit, pageNumber } = new apiFeatures(
+        User.find({
+            role: studentId,
+            isActive: true,
+        }),
+        req.query
+    )
+        .limitFields("teachers")
+        .populateUpdatedBy()
+        .sort()
+        .search(["name.first"])
+        .paginate();
+
+    const students = await query.query;
+    const data = { hitsLimit, pageNumber, count: students.length, students };
+    const response = successResponse(data);
+    res.status(200).json(response);
+});
+
+export { addAdmin, addTeachers, addStudents, getTeachers, getStudents };
