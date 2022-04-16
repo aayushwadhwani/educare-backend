@@ -38,6 +38,9 @@ const assignmentSchema = new Schema(
         pdfReference: {
             type: String,
         },
+        pdfReferenceOriginalName: {
+            type: String,
+        },
         createdBy: {
             type: Types.ObjectId,
             ref: User,
