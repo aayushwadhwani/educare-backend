@@ -12,8 +12,6 @@ class S3Service {
                 secretAccessKey: process.env.S3_PRIVATE_KEY as string,
             },
         });
-        console.log(this.s3);
-        console.log(this.bucketName);
     }
 
     async putObject(key: string, body: Buffer) {

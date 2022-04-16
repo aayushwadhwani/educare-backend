@@ -1,762 +1,670 @@
 {
-	"info": {
-		"_postman_id": "a25f0fae-cd23-4f9f-871a-33c4b298b2ee",
-		"name": "educare_backend",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-	},
-	"item": [
-		{
-			"name": "subject",
-			"item": [
-				{
-					"name": "addSubject",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{jwt}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"MPR-test\",\r\n    \"class\": \"625389a67aada05aa913b379\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{URL}}/subject",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"subject"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "getSubjects",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{jwt}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{URL}}/subject",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"subject"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "getSubjectById",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{jwt}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{URL}}/subject/625389e17aada05aa913b387",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"subject",
-								"625389e17aada05aa913b387"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "deleteSubject",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{jwt}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{URL}}/subject/625080e8487526bc9ee90e3f",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"subject",
-								"625080e8487526bc9ee90e3f"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "schedule",
-			"item": [
-				{
-					"name": "addSchedule",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{jwt}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"startTime\": \"Thu Apr 07 2022 09:00:00 GMT+0530\",\r\n    \"endTime\": \"Thu Apr 08 2022 10:00:00 GMT+0530\",\r\n    \"subject\": \"625080e8487526bc9ee90e3f\",\r\n    \"link\": \"www.google.com\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{URL}}/schedule",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"schedule"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "deleteSchedule",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{jwt}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"startTime\": \"Thu Apr 07 2022 09:00:00 GMT+0530\",\r\n    \"endTime\": \"Thu Apr 08 2022 10:00:00 GMT+0530\",\r\n    \"subject\": \"625080e8487526bc9ee90e3f\",\r\n    \"link\": \"www.google.com\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{URL}}/schedule/625150e8b2365cb5a4ae434e",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"schedule",
-								"625150e8b2365cb5a4ae434e"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "role",
-			"item": [
-				{
-					"name": "getAllRole",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{jwt}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{URL}}/role",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"role"
-							],
-							"query": [
-								{
-									"key": "sort",
-									"value": "-name",
-									"disabled": true
-								},
-								{
-									"key": "limit",
-									"value": "1",
-									"disabled": true
-								},
-								{
-									"key": "page",
-									"value": "2",
-									"disabled": true
-								},
-								{
-									"key": "search",
-									"value": "tea",
-									"disabled": true
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "addRole",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{jwt}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"student testing\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{URL}}/role",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"role"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "deleteRole",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{jwt}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{URL}}/role/6241fbd49a3b664fb37d5338",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"role",
-								"6241fbd49a3b664fb37d5338"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "getSingleRole",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{jwt}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{URL}}/role/6241fbd49a3b664fb37d5338",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"role",
-								"6241fbd49a3b664fb37d5338"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "class",
-			"item": [
-				{
-					"name": "createClass",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{jwt}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "name",
-									"value": "test",
-									"type": "text"
-								},
-								{
-									"key": "teacher",
-									"value": "",
-									"type": "text",
-									"disabled": true
-								},
-								{
-									"key": "file",
-									"type": "file",
-									"src": "/C:/Users/Aayush Wadhwani/Documents/Projects/educare/src/datasheets/class.csv"
-								}
-							]
-						},
-						"url": {
-							"raw": "{{URL}}/teacher/class",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"teacher",
-								"class"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "getAllClasses",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{jwt}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": []
-						},
-						"url": {
-							"raw": "{{URL}}/teacher/class",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"teacher",
-								"class"
-							],
-							"query": [
-								{
-									"key": "limit",
-									"value": "1",
-									"disabled": true
-								},
-								{
-									"key": "page",
-									"value": "1",
-									"disabled": true
-								},
-								{
-									"key": "search",
-									"value": "c34",
-									"disabled": true
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "deleteClass",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{jwt}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{URL}}/teacher/class/624c8617b81bab83feb9ef3a",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"teacher",
-								"class",
-								"624c8617b81bab83feb9ef3a"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "auth",
-			"item": [
-				{
-					"name": "login",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.environment.set(\"jwt\", pm.response.json().data.token);"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"teachertest@tsecedu.teachers.org\",\r\n    \"password\": \"Teacher test\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{URL}}/auth/login",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"auth",
-								"login"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "assignment",
-			"item": [
-				{
-					"name": "addAssignment",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{jwt}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"url": {
-							"raw": "{{URL}}/assignment",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"assignment"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "admin",
-			"item": [
-				{
-					"name": "addAdmin",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{jwt}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"url": {
-							"raw": "{{URL}}/admin",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"admin"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "addTeachers",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{jwt}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "file",
-									"type": "file",
-									"src": "/C:/Users/Aayush Wadhwani/Documents/Projects/educare/src/datasheets/teacher_add.csv"
-								}
-							]
-						},
-						"url": {
-							"raw": "{{URL}}/teacher",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"teacher"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "addStudent",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{jwt}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "file",
-									"type": "file",
-									"src": "/C:/Users/Aayush Wadhwani/Documents/Projects/educare/src/datasheets/student_add.csv"
-								}
-							]
-						},
-						"url": {
-							"raw": "{{URL}}/student",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"student"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "getTeachers",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{jwt}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{URL}}/teacher?limit=20&page=1",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"teacher"
-							],
-							"query": [
-								{
-									"key": "limit",
-									"value": "20"
-								},
-								{
-									"key": "page",
-									"value": "1"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "getStudents",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{jwt}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "file",
-									"type": "file",
-									"src": "/C:/Users/Aayush Wadhwani/Documents/Projects/educare/src/datasheets/student_add.csv"
-								}
-							]
-						},
-						"url": {
-							"raw": "{{URL}}/student",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"student"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		}
-	]
+    "info": {
+        "_postman_id": "a25f0fae-cd23-4f9f-871a-33c4b298b2ee",
+        "name": "educare_backend",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "subject",
+            "item": [
+                {
+                    "name": "addSubject",
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{jwt}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n    \"name\": \"MPR-test\",\r\n    \"class\": \"625389a67aada05aa913b379\"\r\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{URL}}/subject",
+                            "host": ["{{URL}}"],
+                            "path": ["subject"]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "getSubjects",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{jwt}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{URL}}/subject",
+                            "host": ["{{URL}}"],
+                            "path": ["subject"]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "getSubjectById",
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{jwt}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{URL}}/subject/625389e17aada05aa913b387",
+                            "host": ["{{URL}}"],
+                            "path": ["subject", "625389e17aada05aa913b387"]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "deleteSubject",
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{jwt}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                            "raw": "{{URL}}/subject/625080e8487526bc9ee90e3f",
+                            "host": ["{{URL}}"],
+                            "path": ["subject", "625080e8487526bc9ee90e3f"]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "schedule",
+            "item": [
+                {
+                    "name": "addSchedule",
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{jwt}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n    \"startTime\": \"Thu Apr 07 2022 09:00:00 GMT+0530\",\r\n    \"endTime\": \"Thu Apr 08 2022 10:00:00 GMT+0530\",\r\n    \"subject\": \"625080e8487526bc9ee90e3f\",\r\n    \"link\": \"www.google.com\"\r\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{URL}}/schedule",
+                            "host": ["{{URL}}"],
+                            "path": ["schedule"]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "deleteSchedule",
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{jwt}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n    \"startTime\": \"Thu Apr 07 2022 09:00:00 GMT+0530\",\r\n    \"endTime\": \"Thu Apr 08 2022 10:00:00 GMT+0530\",\r\n    \"subject\": \"625080e8487526bc9ee90e3f\",\r\n    \"link\": \"www.google.com\"\r\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{URL}}/schedule/625150e8b2365cb5a4ae434e",
+                            "host": ["{{URL}}"],
+                            "path": ["schedule", "625150e8b2365cb5a4ae434e"]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "role",
+            "item": [
+                {
+                    "name": "getAllRole",
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{jwt}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{URL}}/role",
+                            "host": ["{{URL}}"],
+                            "path": ["role"],
+                            "query": [
+                                {
+                                    "key": "sort",
+                                    "value": "-name",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "limit",
+                                    "value": "1",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "page",
+                                    "value": "2",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "search",
+                                    "value": "tea",
+                                    "disabled": true
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "addRole",
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{jwt}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n    \"name\": \"student testing\"\r\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{URL}}/role",
+                            "host": ["{{URL}}"],
+                            "path": ["role"]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "deleteRole",
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{jwt}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                            "raw": "{{URL}}/role/6241fbd49a3b664fb37d5338",
+                            "host": ["{{URL}}"],
+                            "path": ["role", "6241fbd49a3b664fb37d5338"]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "getSingleRole",
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{jwt}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{URL}}/role/6241fbd49a3b664fb37d5338",
+                            "host": ["{{URL}}"],
+                            "path": ["role", "6241fbd49a3b664fb37d5338"]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "class",
+            "item": [
+                {
+                    "name": "createClass",
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{jwt}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "formdata",
+                            "formdata": [
+                                {
+                                    "key": "name",
+                                    "value": "test",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "teacher",
+                                    "value": "",
+                                    "type": "text",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "file",
+                                    "type": "file",
+                                    "src": "/C:/Users/Aayush Wadhwani/Documents/Projects/educare/src/datasheets/class.csv"
+                                }
+                            ]
+                        },
+                        "url": {
+                            "raw": "{{URL}}/teacher/class",
+                            "host": ["{{URL}}"],
+                            "path": ["teacher", "class"]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "getAllClasses",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{jwt}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [],
+                        "body": {
+                            "mode": "formdata",
+                            "formdata": []
+                        },
+                        "url": {
+                            "raw": "{{URL}}/teacher/class",
+                            "host": ["{{URL}}"],
+                            "path": ["teacher", "class"],
+                            "query": [
+                                {
+                                    "key": "limit",
+                                    "value": "1",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "page",
+                                    "value": "1",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "search",
+                                    "value": "c34",
+                                    "disabled": true
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "deleteClass",
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{jwt}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                            "raw": "{{URL}}/teacher/class/624c8617b81bab83feb9ef3a",
+                            "host": ["{{URL}}"],
+                            "path": ["teacher", "class", "624c8617b81bab83feb9ef3a"]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "auth",
+            "item": [
+                {
+                    "name": "login",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": ["pm.environment.set(\"jwt\", pm.response.json().data.token);"],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n    \"email\": \"teachertest@tsecedu.teachers.org\",\r\n    \"password\": \"Teacher test\"\r\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{URL}}/auth/login",
+                            "host": ["{{URL}}"],
+                            "path": ["auth", "login"]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "assignment",
+            "item": [
+                {
+                    "name": "addAssignment",
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{jwt}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                            "raw": "{{URL}}/assignment",
+                            "host": ["{{URL}}"],
+                            "path": ["assignment"]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "admin",
+            "item": [
+                {
+                    "name": "addAdmin",
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{jwt}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                            "raw": "{{URL}}/admin",
+                            "host": ["{{URL}}"],
+                            "path": ["admin"]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "addTeachers",
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{jwt}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "formdata",
+                            "formdata": [
+                                {
+                                    "key": "file",
+                                    "type": "file",
+                                    "src": "/C:/Users/Aayush Wadhwani/Documents/Projects/educare/src/datasheets/teacher_add.csv"
+                                }
+                            ]
+                        },
+                        "url": {
+                            "raw": "{{URL}}/teacher",
+                            "host": ["{{URL}}"],
+                            "path": ["teacher"]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "addStudent",
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{jwt}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "formdata",
+                            "formdata": [
+                                {
+                                    "key": "file",
+                                    "type": "file",
+                                    "src": "/C:/Users/Aayush Wadhwani/Documents/Projects/educare/src/datasheets/student_add.csv"
+                                }
+                            ]
+                        },
+                        "url": {
+                            "raw": "{{URL}}/student",
+                            "host": ["{{URL}}"],
+                            "path": ["student"]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "getTeachers",
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{jwt}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{URL}}/teacher?limit=20&page=1",
+                            "host": ["{{URL}}"],
+                            "path": ["teacher"],
+                            "query": [
+                                {
+                                    "key": "limit",
+                                    "value": "20"
+                                },
+                                {
+                                    "key": "page",
+                                    "value": "1"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "getStudents",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "{{jwt}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [],
+                        "body": {
+                            "mode": "formdata",
+                            "formdata": [
+                                {
+                                    "key": "file",
+                                    "type": "file",
+                                    "src": "/C:/Users/Aayush Wadhwani/Documents/Projects/educare/src/datasheets/student_add.csv"
+                                }
+                            ]
+                        },
+                        "url": {
+                            "raw": "{{URL}}/student",
+                            "host": ["{{URL}}"],
+                            "path": ["student"]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        }
+    ]
 }
