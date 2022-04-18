@@ -11,7 +11,7 @@ const diskStorageOprions = (role: string, fileName: string): DiskStorageOptions 
         filename: (req, file, cb) => {
             const ext = file.mimetype.split("/")[1];
             console.log(ext);
-            const name = file.filename.replace("/", "").replace(".", "");
+            const name = fileName.replace("/", "").replace(".", "");
             cb(null, `${role}-${name}-${Date.now()}.${ext}`);
         },
     };
