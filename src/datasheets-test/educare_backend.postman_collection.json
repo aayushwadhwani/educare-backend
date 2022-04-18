@@ -25,7 +25,7 @@
                         "header": [],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\r\n    \"name\": \"MPR-test\",\r\n    \"class\": \"625389a67aada05aa913b379\"\r\n}",
+                            "raw": "{\r\n    \"name\": \"ccl-test\",\r\n    \"class\": \"625be344976b0e9c009fca31\"\r\n}",
                             "options": {
                                 "raw": {
                                     "language": "json"
@@ -91,9 +91,9 @@
                         "method": "GET",
                         "header": [],
                         "url": {
-                            "raw": "{{URL}}/subject/625389e17aada05aa913b387",
+                            "raw": "{{URL}}/subject/625be39d976b0e9c009fca37",
                             "host": ["{{URL}}"],
-                            "path": ["subject", "625389e17aada05aa913b387"]
+                            "path": ["subject", "625be39d976b0e9c009fca37"]
                         }
                     },
                     "response": []
@@ -114,9 +114,9 @@
                         "method": "DELETE",
                         "header": [],
                         "url": {
-                            "raw": "{{URL}}/subject/625080e8487526bc9ee90e3f",
+                            "raw": "{{URL}}/subject/625be39d976b0e9c009fca37",
                             "host": ["{{URL}}"],
-                            "path": ["subject", "625080e8487526bc9ee90e3f"]
+                            "path": ["subject", "625be39d976b0e9c009fca37"]
                         }
                     },
                     "response": []
@@ -343,7 +343,7 @@
                             "formdata": [
                                 {
                                     "key": "name",
-                                    "value": "test",
+                                    "value": "testing-ccl",
                                     "type": "text"
                                 },
                                 {
@@ -355,7 +355,7 @@
                                 {
                                     "key": "file",
                                     "type": "file",
-                                    "src": "/C:/Users/Aayush Wadhwani/Documents/Projects/educare/src/datasheets/class.csv"
+                                    "src": "/C:/Users/Aayush Wadhwani/Documents/Projects/educare/src/datasheets-test/class.csv"
                                 }
                             ]
                         },
@@ -458,7 +458,7 @@
                         "header": [],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\r\n    \"email\": \"teachertest@tsecedu.teachers.org\",\r\n    \"password\": \"Teacher test\"\r\n}",
+                            "raw": "{\r\n    \"email\": \"teachertest2@tsecedu.teachers.org\",\r\n    \"password\": \"Teacher test2\"\r\n}",
                             "options": {
                                 "raw": {
                                     "language": "json"
@@ -493,6 +493,48 @@
                         },
                         "method": "POST",
                         "header": [],
+                        "body": {
+                            "mode": "formdata",
+                            "formdata": [
+                                {
+                                    "key": "name",
+                                    "value": "assignment 01",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "description",
+                                    "value": "For students just checking",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "subject",
+                                    "value": "625be466976b0e9c009fca55",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "students",
+                                    "value": "",
+                                    "type": "text",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "dueDate",
+                                    "value": "Sat Apr 30 2022 00:00:00 GMT+0530",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "maxScore",
+                                    "value": "",
+                                    "type": "text",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "file",
+                                    "type": "file",
+                                    "src": "/C:/Users/Aayush Wadhwani/Documents/Assignments/Sem 3/202185_computer_5.pdf"
+                                }
+                            ]
+                        },
                         "url": {
                             "raw": "{{URL}}/assignment",
                             "host": ["{{URL}}"],
@@ -550,7 +592,7 @@
                                 {
                                     "key": "file",
                                     "type": "file",
-                                    "src": "/C:/Users/Aayush Wadhwani/Documents/Projects/educare/src/datasheets/teacher_add.csv"
+                                    "src": "/C:/Users/Aayush Wadhwani/Documents/Projects/educare/src/datasheets-test/teacher_add.csv"
                                 }
                             ]
                         },
