@@ -1,6 +1,7 @@
 import User from "../models/User";
 import asyncWrapper from "../middlewares/asyncWrapper";
 import successResponse from "../response/Success";
+import csvWriterObject from "../utils/csvWriter";
 import * as csv from "fast-csv";
 import { diskStorageOprions, multerForCsv } from "../utils/multerFeatures";
 import * as fs from "fs";
@@ -69,20 +70,44 @@ const addTeachers = asyncWrapper(async (req, res, next) => {
             next(error);
         }
     });
-    console.log(req.user);
+    // console.log(req.user);
     const data = await temp;
-    const toAdd: { firstName: string; lastName: string; email: string; dateOfBirth: string; gender: string }[] =
-        data.map((e) => {
-            e.name = { first: e.firstName, last: e.lastName };
-            e.password = e.firstName + " " + e.lastName;
-            e.role = teacherId._id;
-            e.createdBy = req.user._id;
-            e.updatedBy = req.user._id;
-            return e;
-        });
+    const toAdd: {
+        firstName: string;
+        lastName: string;
+        email: string;
+        dateOfBirth: string;
+        gender: string;
+        name: { first: String; last: string };
+        password: String;
+        role: String;
+        createdBy: string;
+        updatedBy: string;
+    }[] = data.map((e) => {
+        e.name = { first: e.firstName, last: e.lastName };
+        e.password = e.firstName + " " + e.lastName;
+        e.role = teacherId._id;
+        e.createdBy = req.user._id;
+        e.updatedBy = req.user._id;
+        return e;
+    });
 
-    const teachers = await User.create(toAdd);
-    const response = successResponse(teachers, 201);
+    const success: { email: String; password: String }[] = [];
+    const error: { email: String }[] = [];
+    for (let i = 0; i < toAdd.length; i++) {
+        const current = toAdd[i];
+        try {
+            await User.create(current);
+            success.push({ email: current.email, password: current.password });
+        } catch (e) {
+            error.push({ email: current.email });
+        }
+    }
+
+    await csvWriterObject("teacher", req.file?.filename!).writeRecords(success);
+    // const teachers = await User.create(toAdd);
+    const dataS = { teachers: success, path: `data/teacher/${req.file?.filename}` };
+    const response = successResponse(dataS, 201, error);
     res.status(200).json(response);
 });
 
@@ -139,8 +164,10 @@ const addStudents = asyncWrapper(async (req, res, next) => {
         }
     }
 
-    console.log(studentData);
-    const response = successResponse(success, 201, error);
+    await csvWriterObject("student", req.file?.filename!).writeRecords(success);
+    const data = { studentData: success, path: `data/student/${req.file?.filename}` };
+    // console.log(studentData);
+    const response = successResponse(data, 201, error);
     res.status(response.status.code).json(response);
 });
 
