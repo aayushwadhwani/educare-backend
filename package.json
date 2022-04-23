@@ -5,7 +5,9 @@
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "set NODE_ENV=dev&& ts-node-dev --respawn --transpile-only ./src/server.ts",
+        "start-dev": "set NODE_ENV=dev&& ts-node-dev --respawn --transpile-only ./src/server.ts",
+        "start": "node dist/server.js",
+        "build": "tsc",
         "format": "npx prettier -w src"
     },
     "author": "Aayush wadhwani",
