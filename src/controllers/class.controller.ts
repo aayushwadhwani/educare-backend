@@ -14,7 +14,7 @@ import successResponse from "../response/Success";
 import apiFeatures from "../utils/ApiFeatures";
 
 const createClass = asyncWrapper(async (req, res, next) => {
-    const uploadedPath = __dirname + "../../../uploads/class/" + req.file?.filename;
+    const uploadedPath = "uploads/class/" + req.file?.filename;
     const classDataPromise: Promise<{ student: string }[]> = new Promise((resolve, reject) => {
         const data: any[] = [];
         try {
