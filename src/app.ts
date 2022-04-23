@@ -4,7 +4,6 @@ import routes from "./routes";
 import dotenv from "dotenv";
 import notFound from "./errors/notFound";
 import errorHandlerMiddleware from "./middlewares/errorHandler";
-import morgan from "morgan";
 
 dotenv.config({ path: ".env.dev" });
 
@@ -35,7 +34,6 @@ app.set("port", port);
 
 app.use(compression());
 app.use(express.json());
-app.use(morgan("dev"));
 app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 app.use(routes);
 app.use(notFound);
