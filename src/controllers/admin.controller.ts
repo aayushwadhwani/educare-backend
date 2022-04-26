@@ -40,7 +40,8 @@ const addAdmin = asyncWrapper(async (req, res) => {
 });
 
 const addTeachers = asyncWrapper(async (req, res, next) => {
-    const uploadedPath = __dirname + "../../../uploads/teachers/" + req.file?.filename;
+    const uploadedPath = "uploads/teachers/" + req.file?.filename;
+    console.log("here");
     const teacherId = await Role.findOne({ name: "teacher", isActive: true }, "name");
     if (!teacherId) {
         return next(createError("There was an error.", 500));
