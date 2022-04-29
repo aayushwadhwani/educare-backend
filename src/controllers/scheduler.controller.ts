@@ -3,6 +3,7 @@ import asyncWrapper from "../middlewares/asyncWrapper";
 import createError from "../response/fail";
 import Scheduler from "../models/Scheduler";
 import successResponse from "../response/Success";
+import mongoose from "mongoose";
 
 const addSchedule = asyncWrapper(async (req, res, next) => {
     const teacher = req.user._id;
@@ -54,4 +55,56 @@ const deleteSchedule = asyncWrapper(async (req, res, next) => {
     res.status(response.status.code).json(response);
 });
 
-export { addSchedule, deleteSchedule };
+const getSchedules = asyncWrapper(async (req, res, next) => {
+    const { id } = req.params;
+    // const schedules = await Scheduler.find({ isActive: true, subject: id });
+    const schedules = await Scheduler.aggregate([
+        {
+            $match: { isActive: { $eq: true }, subject: { $eq: new mongoose.Types.ObjectId(id as string) } },
+        },
+        {
+            $project: {
+                startTime: 1,
+                endTime: 1,
+                description: 1,
+                link: 1,
+            },
+        },
+        {
+            $addFields: {
+                date: {
+                    $dateToString: {
+                        format: "%Y-%m-%d",
+                        date: "$startTime",
+                    },
+                },
+            },
+        },
+        {
+            $group: {
+                _id: "$date",
+                schedule: {
+                    $push: {
+                        startTime: "$startTime",
+                        endTime: "$endTime",
+                        description: "$description",
+                        link: "$link",
+                        date: "$date",
+                    },
+                },
+            },
+        },
+        {
+            $addFields: {
+                startsAt: "$_id",
+            },
+        },
+        {
+            $project: {
+                _id: 0,
+            },
+        },
+    ]);
+    res.status(200).json({ schedules });
+});
+export { addSchedule, deleteSchedule, getSchedules };
