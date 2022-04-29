@@ -1,4 +1,5 @@
 import aws, { S3 } from "aws-sdk";
+import createError from "../response/fail";
 
 class S3Service {
     private readonly s3: S3;
@@ -18,6 +19,22 @@ class S3Service {
         const params = { Bucket: this.bucketName, Key: key, Body: body };
         const uploadObject = await this.s3.upload(params).promise();
         return `s3://${this.bucketName}/${uploadObject.Key}`;
+    }
+
+    async getSignedUrl(url: string) {
+        if (!url || !url.startsWith("s3:")) {
+            return url;
+        }
+        const bucketAndKey = url.split("//")[1];
+        if (!bucketAndKey) {
+            const message = `Invalid S3 URL: ${url}`;
+            throw createError(message);
+        }
+        const index = bucketAndKey.indexOf("/");
+        const Bucket = bucketAndKey.substring(0, index);
+        const Key = bucketAndKey.substring(index + 1);
+        const params = { Bucket, Key, Expires: 86400 };
+        return await this.s3.getSignedUrlPromise("getObject", params);
     }
 }
 

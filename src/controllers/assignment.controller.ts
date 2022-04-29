@@ -1,4 +1,3 @@
-import S3Service from "../utils/S3Features";
 import asyncWrapper from "../middlewares/asyncWrapper";
 import { diskStorageOptionV2, multerForAny } from "../utils/multerFeatures";
 import { diskStorage } from "multer";
@@ -7,6 +6,8 @@ import createError from "../response/fail";
 import Assignment from "../models/Assignment";
 import { readFilePromise, unlink } from "../utils/promisify";
 import successResponse from "../response/Success";
+import ApiFeatures from "../utils/ApiFeatures";
+import S3Service from "../utils/S3Features";
 
 const assignmentDiskStorage = diskStorageOptionV2("assignment");
 const assignmentStorage = diskStorage(assignmentDiskStorage);
@@ -76,4 +77,26 @@ const addAssignment = asyncWrapper(async (req, res, next) => {
     res.status(response.status.code).json(response);
 });
 
-export { addAssignment };
+const getAssignment = asyncWrapper(async (req, res, next) => {
+    const { id } = req.params;
+    const { pageNumber, hitsLimit, query } = new ApiFeatures(
+        Assignment.find({ isActive: true, subject: id }),
+        req.query
+    )
+        .sort()
+        .populateUpdatedBy()
+        .limitFields("assignments")
+        .search(["name"])
+        .paginate();
+
+    const assignments = await query.query;
+    const s3Service = new S3Service();
+    for (let i = 0; i < assignments.length; i++) {
+        assignments[i].pdfReference = await s3Service.getSignedUrl(assignments[i].pdfReference);
+    }
+    const data = { hitsLimit, pageNumber, assignments };
+    const response = successResponse(data);
+    res.status(response.status.code).json(response);
+});
+
+export { addAssignment, getAssignment };

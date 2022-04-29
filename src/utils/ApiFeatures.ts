@@ -56,6 +56,10 @@ class apiFeatures {
             case "teachers":
                 this.query.select("name email dateOfBirth gender updatedBy updatedAt");
                 break;
+
+            case "assignments":
+                this.query.select("name description students dueDate maxScore pdfReference pdfReferenceOriginalName");
+                break;
         }
         return this;
     }
