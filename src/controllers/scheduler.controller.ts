@@ -6,7 +6,7 @@ import successResponse from "../response/Success";
 
 const addSchedule = asyncWrapper(async (req, res, next) => {
     const teacher = req.user._id;
-    const { subject, startTime, endTime, link } = req.body;
+    const { subject, startTime, endTime, link, description } = req.body;
     const studentsQuery = await Subject.findOne({ _id: subject, isActive: true, teacher })
         .select("name class teacher")
         .populate({ path: "class", select: "name students" });
@@ -21,6 +21,8 @@ const addSchedule = asyncWrapper(async (req, res, next) => {
         endTime,
         subject,
         teacher,
+        link,
+        description,
         students,
         createdBy: teacher,
         updatedBy: teacher,

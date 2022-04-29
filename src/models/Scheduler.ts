@@ -17,6 +17,10 @@ const schedulerSchema = new Schema(
             type: Date,
             required: [true, "Please provide end time"],
         },
+        description: {
+            type: "String",
+            required: [true, "Please provide description"],
+        },
         students: {
             type: [Types.ObjectId],
             ref: User,
